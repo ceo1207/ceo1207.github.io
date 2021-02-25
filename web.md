@@ -42,3 +42,22 @@ Python Flask示例python3 python-example.py，然后在您的浏览器中打开 
 设置vscode中取消勾选
 
 vscode自动预览html页面
+
+`<a>` — a 是 "anchor" （锚）的缩写  
+href 这个名字可能开始看起来有点令人费解，代表超文本引用（ hypertext reference）
+
+# HTML
+
+# CSS
++ 选择器语法
+
+# JS
+我们将 `<script>` 放在HTML文件的底部附近的原因是浏览器会按照代码在文件中的顺序加载 HTML。如果先加载的 JavaScript 期望修改其下方的 HTML，那么它可能由于 HTML 尚未被加载而失效。因此，将 JavaScript 代码放在 HTML页面的底部附近通常是最好的策略。
+
+ 文档对象模型 (DOM) API
+
+JS的加入为网页带来了交互，其中事件
+事件能为网页添加真实的交互能力。它可以捕捉浏览器操作并运行一些代码做为响应。最简单的事件是 点击事件，鼠标的点击操作会触发该事件。
+
++ ask
+如何设置图片加载时显示一样大小的纯色背景图？？
