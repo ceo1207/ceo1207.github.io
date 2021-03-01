@@ -19,3 +19,5 @@ github可以直接发布markdown
 网址换掉就可以了
 https://xxx.github.io/test.md 改为 https://xxx.github.io/test
 
+
+https://doclikecode.readthedocs.io/zh_CN/latest/5_others/jekII.html
