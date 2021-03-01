@@ -39,11 +39,17 @@ $(document).ready(function () {
 });
 ```
 
-+ 链接。有多种方式可供选择
-可以使用html的链接 `<a href=''>`
++ 链接。有多种方式可供选择。   
+可以使用html的链接 `<a href=''>`  
 <https://www.runoob.com>  
-[亚马逊](https://www.amazon.cn/dp/B01IBZWTWW/ref=wl_it_dp_o_pC_nS_ttl?_encoding=UTF8&colid=BDXF90QZX6WX&coliid=I19EB97K0GNLW8)
-
+[亚马逊](https://www.amazon.cn/dp/B01IBZWTWW/ref=wl_it_dp_o_pC_nS_ttl?_encoding=UTF8&colid=BDXF90QZX6WX&coliid=I19EB97K0GNLW8)  
+将元素切换为链接
+```
+<a href="https://play.google.com/store/apps/details?id=com.phodal.designiot">
+  <img alt="Get it on Google Play"
+       src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" width="250" />
+</a>
+```
 + 使用图片  
 可以使用html标签表示
 `<img src="xxx" width="50%">`
