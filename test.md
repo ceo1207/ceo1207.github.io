@@ -1,11 +1,3 @@
-markdown推荐编辑器 typora、vscode。  
-使用vscode写markdown
-中文包 Ctrl+Shift+P configure display language
-安装插件 markdown all in one, markdown preview github styling.
-
-typora
-编辑后直接渲染出效果，可以直接粘贴图片。强烈推荐
-
 markdown有一些标识语法，并且可以使用html的标签
 
 标识语法
