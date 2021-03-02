@@ -46,9 +46,29 @@ vscode自动预览html页面
 `<a>` — a 是 "anchor" （锚）的缩写  
 href 这个名字可能开始看起来有点令人费解，代表超文本引用（ hypertext reference）
 
-# HTML
+## HTML
+网站的文字内容结构化。
 
-# CSS
+最好只对每个页面使用一次`<h1>` — 这是顶级标题，所有其他标题位于层次结构中的下方。
+标题的内容会影响搜索引擎的排名。
+
+html语言还能用在markdown文件中，标识斜体em, 粗体 strong，
+<em>斜体</em>
+<u>下划线</u>
+
+将块级元素转化为链接
+```
+<a href="https://www.mozilla.org/zh-CN/">
+  <img src="mozilla-image.png" alt="链接至 Mozilla 主页的 Mozilla 标志">
+</a>
+```
+
+使用相对链接和绝对链接
+如果你使用绝对URL而不是相对URL，你就会不断地让你的浏览器做额外的工作，这意味着它的效率会降低。
+
+服务器是如何处理下载链接的
+
+## CSS
 + 选择器语法
 
 # JS
