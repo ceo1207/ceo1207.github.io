@@ -7,8 +7,109 @@
 + ctrl_shift_f 搜索
 + ctrl_` 使用console 
 
-如何使用调试功能  
-安装相应功能的插件。Debuggers for java/xxx.  
+### 如何使用调试功能  
+安装相应功能的插件。Debuggers for xxx.  
+
++ python  
+安装python插件即可调试
+
++ cpp  
+  1. 安装 c/c++ 插件（必须）、C++ Intellisense（非必须）、Include Autocomplete（非必须
+  2. mingw安装，配置环境变量 path
+  3. 配置三个json文件到.vscode中
+
+c_cpp_properties.json
+```
+   {
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceRoot}",
+                "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++",
+                "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32",
+                "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward",
+                "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include",
+                "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/tr1",
+                "C:/mingw64/x86_64-w64-mingw32/include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "__GNUC__=6",
+                "__cdecl=__attribute__((__cdecl__))"
+            ],
+            "intelliSenseMode": "gcc-x64", // mingw64使用gcc的编译器
+            "browse": {
+                "path": [
+                    "${workspaceRoot}",
+                    "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++",
+                    "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32",
+                    "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward",
+                    "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include",
+                    "C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/tr1",
+                    "C:/mingw64/x86_64-w64-mingw32/include"
+                ]
+            },
+            "compilerPath": "C:\\mingw64\\bin\\gcc.exe",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++14"
+        }
+    ],
+    "version": 4
+}
+```
+
+launch.json
+```
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C++ Launch (GDB)", // 配置名称，将会在启动配置的下拉菜单中显示
+            "type": "cppdbg", // 配置类型，这里只能为cppdbg
+            "request": "launch", // 请求配置类型，可以为launch（启动）或attach（附加）
+            "targetArchitecture": "x86", // 生成目标架构，一般为x86或x64，可以为x86, arm, arm64, mips, x64, amd64, x86_64
+            "program": "${file}.exe", // 将要进行调试的程序的路径
+            "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe", // miDebugger的路径，注意这里要与MinGw的路径对应
+            "args": [], // 程序调试时传递给程序的命令行参数，一般设为空即可
+            "stopAtEntry": false, // 设为true时程序将暂停在程序入口处，一般设置为false
+            "cwd": "${workspaceRoot}", // 调试程序时的工作目录，一般为${workspaceRoot}即代码所在目录
+            "externalConsole": true, // 调试时是否显示控制台窗口，一般设置为true显示控制台
+            "preLaunchTask": "g++" // 调试会话开始前执行的任务，一般为编译程序，c++为g++, c为gcc
+        }
+    ]
+}
+```
+
+tasks.json
+```
+{
+    "version": "2.0.0",
+    "command": "g++",
+    "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${file}.exe"
+    ], // 编译命令参数
+    "problemMatcher": {
+        "owner": "cpp",
+        "fileLocation": [
+            "relative",
+            "${workspaceRoot}"
+        ],
+        "pattern": {
+            "regexp": "^(.*)\\\\(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+            "file": 2,
+            "line": 3,
+            "column": 4,
+            "severity": 5,
+            "message": 6
+        }
+    }
+}
+```
 
 ***
 ## pycharm
