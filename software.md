@@ -138,15 +138,3 @@ tasks.json
 
 
 ***
-## git
-+ 如何将已有文件，添加到git ignore。
-  1. git rm 使用`-r`递归作用到文件夹。
-
-    `git rm --cached filexample.txt`
-
-  2. .gitignore中添加该文件，可以使用图形化界面操作
-
-+ discard local changes
-
-`git checkout .`
-
