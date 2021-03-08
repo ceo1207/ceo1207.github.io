@@ -36,3 +36,22 @@ github pages缺点
 不支持动态内容，博客必须都是静态网页；
 每小时更新不超过 10 次；
 博客不能被百度索引。
+
+## git
++ 如何解决github访问速度慢的问题
+
+    https://zhuanlan.zhihu.com/p/109466869  
+    使用站长工具检测，将ttl小的ip存入hosts，然后更新dns   
+    `ipconfig /flushdns`
+
++ 如何将已有文件，添加到git ignore。
+  1. git rm 使用`-r`递归作用到文件夹。
+
+    `git rm --cached filexample.txt`
+
+  2. .gitignore中添加该文件，可以使用图形化界面操作
+
++ discard local changes
+
+    `git checkout .`
+
