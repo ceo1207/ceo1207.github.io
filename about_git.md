@@ -44,6 +44,8 @@ github pages缺点
     使用站长工具检测，将ttl小的ip存入hosts，然后更新dns   
     `ipconfig /flushdns`
 
+    有的时候，不能不直接用ip访问，`http://ip`
+
 + 如何将已有文件，添加到git ignore。
   1. git rm 使用`-r`递归作用到文件夹。
 

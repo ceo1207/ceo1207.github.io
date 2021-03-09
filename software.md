@@ -138,3 +138,8 @@ tasks.json
 
 
 ***
+
+## 编程语言
+设置pip的淘宝源
+
+`pip3 install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple`
