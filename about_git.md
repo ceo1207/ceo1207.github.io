@@ -55,3 +55,10 @@ github pages缺点
 
     `git checkout .`
 
++ 如何为文件夹添加本地git管理
+ 
+    ```
+    git init
+    git add . 
+    ```
+
