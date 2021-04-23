@@ -39,3 +39,143 @@ random.seed(10)
 
 MISC 杂项 miscellaneous
 
+## MISC
+
++ 如何生成requirements
+
+生成依赖 pip freeze>requirements.txt
+安装所有的依赖 pip install -r requirements.txt 
+
+## python3
+
+函数注解
+
+函数如何写类型声明。Callable
+ Callable[[Arg1Type, Arg2Type, ...], ReturnType] 这样的类型注解
+
+
+ 1e-8 10e-7  ！！
+
+
+
+ 对象 - 类 - 元类是依次抽象的。
++ 对象 - 类 
+对象向上抽象一层是类，同一个类下所有对象的相关数据可以类属性的方式存在。比如统计某类创建的实例对象的数量。
+```
+class Student(object):
+    count = 0
+    def __init__(self):
+        Student.count += 1
+
+student1 = Student()
+student2 = Student()
+```
++ 类 - 元类
+关于类再往上抽象一层即为元类，一个元类下创建的所有的类的相关数据可以交由元类管理。比如记录某元类下所有类的数目。
+```
+class Meta(type):
+    def __init__(cls, name, bases, namespace):
+        super().__init__(name, bases, namespace)
+        if not hasattr(cls, 'registory'):
+            # this is the base class
+            cls.registory = {}
+        else:
+            # this is the subclass
+            cls.registory[name.lower()] = cls
+
+class Fruit(object):
+    __metaclass__=Meta
+    pass
+
+class Apple(Fruit):
+    pass
+
+class Orange(Fruit):
+    pass
+```
+    
++ 如何理解上述语句？
+    + python2和python3使用元类的语法不同。引用元类的方式不同，元类的初始化函数的函数签名也不同
+    ```
+    # python2 
+    class Fruit(object):
+        __metaclass__=Meta
+        pass
+    
+    type(name, bases, namespace)
+    ```
+    
+    ```
+    # python3 
+    class Fruit(object, metaclass=Meta):
+        pass
+    
+    type(name, bases, namespace, **kwargs)
+    ```
+    + 如何用元类动态创建类？
+    可以使用type，动态创建class，动态创建的写法和class的定义写法是等价的，动态创建的class都是新式类，而非经典类。以下两种方式等价：
+    ```
+    # 使用class语句定义class
+    class Base(object):
+        counter = 10
+
+    class Derived(Base):
+        def get_counter(self):
+            return self.counter
+
+    x = Derived()
+    print x.get_counter()
+    ```
+
+    ```
+    # 使用type动态创建class
+    Base = type('Base', (), {'counter': 10})
+    Derived = type('Derived', (Base,), dict(get_counter=lambda self: self.counter))
+    x = Derived()
+    print x.get_counter()
+    ```
+    + 定义类时，元类的哪些成员函数被调用了？ 做下实验：
+    ```
+    class MyMeta(type):
+        def __init__(cls, name, bases, namespace):
+            super(MyMeta, cls).__init__(name, bases, namespace)
+            print 'type init'
+
+        def __call__(self, *more):
+            super(MyMeta, self).__call__(*more)
+            print 'call meta'
+
+    class Atest(object):
+        __metaclass__ = MyMeta
+
+    class Atestsub(Atest):
+        pass
+
+    Atestsub()
+    ```
+    因为定义了两个类，该文件在import后，会调用MyMeta的init函数两次，在创建类的对象时，会调用一次元类的call函数。对象的类型是对应的class，class的”类型“就是type。class根据元类创建，元类继承于type。所以输出如下
+    ```
+    type init
+    type init
+    call meta
+    ```
++ 元类的常见用法
+
+用于定义单例
+```
+class Singleton(type):
+    def __init__(cls, name, bases, dict):
+        super(Singleton, cls).__init__(name, bases, dict)
+        cls.instance = None
+
+    def __call__(cls, *args):
+        if cls.instance is None:
+            cls.instance = super(Singleton, cls).__call__(*args)
+        return cls.instance
+
+class Test(object):
+    __metaclass__=Singleton
+```
+
+参考连接：
+https://lotabout.me/2018/Understanding-Python-MetaClass
